@@ -1,0 +1,28 @@
+<div class="card w-50 mx-auto mt-5 p-4 shadow border-0">
+    <h4 class="pb-3">Registration Form</h4>
+    <form [formGroup]="registeraionForm" class="d-flex flex-column" (ngSubmit)="onSubmit()">
+        <label class="form-label">User Name</label>
+        <input formControlName="userName" class="form-control mb-2">
+        <div *ngIf="registeraionForm.get('userName')?.invalid && registeraionForm.get('userName')?.touched">
+            <small *ngIf="registeraionForm.get('userName')?.errors?.['required']">User Name is required</small>
+            <small *ngIf="registeraionForm.get('userName')?.errors?.['minlength']">User Name must be at least 3 character</small>
+        </div>
+        <label class="form-label">Email</label>
+        <input formControlName="email" class="form-control mb-2">
+        <div *ngIf="registeraionForm.get('email')?.invalid && registeraionForm.get('email')?.touched">
+            <small *ngIf="registeraionForm.get('email')?.errors?.['required']">Email is required</small>
+            <small *ngIf="registeraionForm.get('email')?.errors?.['email']">Enter a valid email</small>
+        </div>
+        <label class="form-label">Password</label>
+        <input formControlName="password" class="form-control mb-2" (input)="checkPasswordStrength()">
+        <div *ngIf="registeraionForm.get('password')?.invalid && registeraionForm.get('password')?.touched">
+            <small *ngIf="registeraionForm.get('password')?.errors?.['required']">Password is required</small>
+            <small *ngIf="registeraionForm.get('password')?.errors?.['minlength']">Password must be at least 8 character</small>
+            <small *ngIf="registeraionForm.get('password')?.errors?.['pattern']">Password must contain 1 number </small>
+        </div>
+        <div class="passStr" *ngIf="passwordStrength">
+            <small class="password-strength">Password Strength: {{passwordStrength}}</small>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="registeraionForm.invalid">Log</button>
+    </form>
+</div>

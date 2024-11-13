@@ -1,0 +1,9 @@
+small{
+    color: red;
+    display: block;
+}
+
+small.password-strength{
+    color: green;
+    text-align: end;
+}
